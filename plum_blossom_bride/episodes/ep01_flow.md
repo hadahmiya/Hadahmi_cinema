@@ -5,7 +5,8 @@
 
 ## 사용 규칙
 1. 각 컷의 `REF`에 적힌 레퍼런스 이미지를 *Ingredients to Video*에 첨부한다.
-2. 코드블록 프롬프트를 그대로 붙여넣고, 끝의 `[STYLE]`(밤이면 `[STYLE] [NIGHT]`)을 `flow_ingredients.md` 원문으로 바꿔 넣는다.
+2. 코드블록 프롬프트를 그대로 붙여넣고, 끝의 `[STYLE]`(밤이면 `[STYLE] [NIGHT]`)을 `flow_ingredients.md` 원문으로 바꿔 넣는다. **`[STYLE]` 앞부분의 `HANBOK ANCHOR` 문장을 절대 빼지 말 것** — 이게 일본·중국 의상으로 새는 걸 막는 핵심이다.
+   ⚠️ Flow에는 네거티브 입력란이 없다. `kimono`, `hanfu` 같은 단어를 프롬프트에 넣으면 *오히려 그 의상이 나온다*.
 3. 프롬프트 속 대사는 **영어 버전**. 한국어 버전은 따옴표 안 대사를 `KR` 줄로 교체하고 `in English` → `in Korean`으로 바꾼다.
 4. `→ EXT` 표시는 직전 컷 마지막 프레임에서 *Extend*로 이어 생성.
 5. 컷당 3–4테이크 생성 → 얼굴 일관성·손 왜곡 확인 후 선택.
@@ -25,7 +26,7 @@
 
 **01** 0:00 · ECU → MS · REF `@SEOYEON_BRIDE` `@HWARYEONG_NAIN` `@LOC_BRIDAL`
 ```
-Extreme close-up of a white porcelain teacup trembling in a young bride's hand, golden candlelight dancing on the tea's surface. The cup slips and shatters on the polished wooden floor in slow motion, petals of spilled tea glittering. Camera pulls back to reveal the bride in a plum-red wonsam robe with gold phoenix patterns and a jeweled flower crown collapsing onto layered red and ivory silk bedding. A palace maid in pale green stands above her. The room glows warm gold with dozens of tall red candles. [STYLE]
+Extreme close-up of a white porcelain teacup trembling in a young bride's hand, golden candlelight dancing on the tea's surface. The cup slips and shatters on the polished wooden floor in slow motion, petals of spilled tea glittering. Camera pulls back to reveal the Korean bride in a traditional Korean royal wedding hanbok: a plum-red wonsam with gold-leaf phoenix patterns and rainbow-striped sleeve bands, a small Korean hwagwan headpiece on her flat center-parted chignon, collapsing onto layered red and ivory silk bedding. A Korean palace maid (nain) in hanbok, a short pale green jeogori and full navy chima, stands above her. The room glows warm gold with dozens of tall red candles. [STYLE]
 ```
 - KR 대사 없음 · SFX: 도자기 깨지는 소리 → 심장 박동
 
@@ -37,7 +38,7 @@ Close-up of the bride lying on silk, a thin line of blood at the corner of her l
 
 **03** 0:16 · WS · REF `@HWAN_WEDDING` `@HWARYEONG_NAIN` `@LOC_BRIDAL`
 ```
-The ivory paper doors of the candlelit bridal chamber burst open. A young crown prince in a deep indigo-blue royal robe with gold dragon roundels and a black winged cap rushes in, his face frozen in horror. The maid slips away into the side corridor; the silver hairpin drops and rolls across the floor. Candle flames sway in the gust. He shouts in English, "Yeon-a!" [STYLE]
+The ivory paper doors of the candlelit bridal chamber burst open. A young Korean crown prince in a Joseon gonryongpo, a deep indigo-blue round-collared robe with circular gold dragon badges on chest and shoulders and a wide jade belt, wearing a black Korean ikseongwan cap with two small upturned rear flaps, rushes in, his face frozen in horror. The maid slips away into the side corridor; the silver hairpin drops and rolls across the floor. Candle flames sway in the gust. He shouts in English, "Yeon-a!" [STYLE]
 ```
 - KR: "연아!"
 
@@ -55,7 +56,7 @@ Extreme close-up: the bride's trembling hand rises to touch the prince's tear-we
 
 **06** 0:40 · MCU · REF `@HWAN_WEDDING` `@LOC_BRIDAL`
 ```
-Holding her lifeless body, the crown prince slowly reaches for a second porcelain teacup on the mother-of-pearl table. Royal guards in the doorway shout in English, "Your Highness, no!" He looks only at her peaceful face and says gently in English, "Then I'll follow you, so you won't lose your way." He drinks it in one motion. [STYLE]
+Holding her lifeless body, the crown prince slowly reaches for a second porcelain teacup on the mother-of-pearl table. Joseon royal guards in dark blue Korean military hanbok and black jeonrip hats in the doorway shout in English, "Your Highness, no!" He looks only at her peaceful face and says gently in English, "Then I'll follow you, so you won't lose your way." He drinks it in one motion. [STYLE]
 ```
 - KR: "저하, 아니 되옵니다!" / "그럼 내가 따라가지. 그대가 길을 잃지 않게."
 
@@ -73,7 +74,7 @@ Top-down shot of the bride and the crown prince lying together on red and ivory 
 
 **08** 1:02 · CU · REF `@SEOYEON` `@LOC_SEOYEON_ROOM`
 ```
-Bright spring morning. Clear sunlight pours through ivory hanji lattice doors into a young noblewoman's room. A 19-year-old maiden in a soft pink sleeping robe with a long braid gasps awake on her floor mattress, sitting up abruptly, clutching her throat, breathing hard. Birdsong, dust motes glowing in the sunbeams. [STYLE]
+Bright spring morning. Clear sunlight pours through ivory hanji lattice doors into a young noblewoman's room. A 19-year-old maiden in a white cotton Korean hanbok undergarment (sokjeogori) and pink underskirt, a long single braid gasps awake on her floor mattress, sitting up abruptly, clutching her throat, breathing hard. Birdsong, dust motes glowing in the sunbeams. [STYLE]
 ```
 - SFX: 거친 숨 → 새소리, 바람 소리
 
@@ -147,7 +148,7 @@ A male servant in a straw hat pushes through the crowd behind the maiden and sho
 
 **19** 2:30 · Slow-motion WS · REF `@SEOYEON_HONGSANG` `@HWAN_MASK` `@LOC_BRIDGE`
 ```
-Slow motion: a tall man in a pale celadon-blue dopo robe, black gat hat and black lacquered half-mask vaults over the railing, catches the falling maiden around the waist in midair and spins her back onto the bridge in one graceful turn. Hundreds of lanterns and the full moon swirl around them like stars, her vermilion skirt and his pale blue robe flowing together. [STYLE] [NIGHT]
+Slow motion: a tall man in a pale celadon-blue Korean scholar's dopo coat, a wide-brimmed black Korean gat of translucent horsehair with a bead chin strap and black lacquered half-mask vaults over the railing, catches the falling maiden around the waist in midair and spins her back onto the bridge in one graceful turn. Hundreds of lanterns and the full moon swirl around them like stars, her vermilion skirt and his pale blue dopo flowing together. [STYLE] [NIGHT]
 ```
 - 음악: 러브 테마 첫 등장
 
@@ -172,7 +173,7 @@ Extreme close-up: the masked man gently wipes droplets from her cheek with a fad
 
 **23** 3:02 · Flashback · REF `@YOUNG_SEOYEON` `@YOUNG_HWAN` `@LOC_HOUSE`
 ```
-Flashback: under a white plum tree in full bloom on a sunny spring day, an 8-year-old girl in a rainbow-striped saekdong jeogori kneels and offers a small handkerchief embroidered with a plum blossom to a crying 14-year-old boy in a pale blue robe. She smiles brightly and says in English, "Don't cry. Plum blossoms bloom even in winter." [FLASHBACK]
+Flashback: under a white plum tree in full bloom on a sunny spring day, an 8-year-old girl in a rainbow-striped saekdong jeogori kneels and offers a small handkerchief embroidered with a plum blossom to a crying 14-year-old Korean boy in a pale blue hanbok durumagi coat. She smiles brightly and says in English, "Don't cry. Plum blossoms bloom even in winter." [FLASHBACK]
 ```
 - KR: "울지 마. 매화는 겨울에도 피는 거래."
 
@@ -184,7 +185,7 @@ Back on the moonlit bridge, the maiden stares at the handkerchief, lips parting 
 
 **25** 3:18 · CU · REF `@HWAN_MASK`
 ```
-Close-up of the masked man carefully folding the handkerchief and tucking it back inside his robe over his heart, a small aching smile beneath the mask. He says in English, "Then that boy must have kept it… for ten years." [STYLE] [NIGHT]
+Close-up of the masked man carefully folding the handkerchief and tucking it back inside his dopo over his heart, a small aching smile beneath the mask. He says in English, "Then that boy must have kept it… for ten years." [STYLE] [NIGHT]
 ```
 - KR: "그럼 그 소년이… 십 년을 간직했나 보오."
 
@@ -209,7 +210,7 @@ Extreme close-up of the maiden freezing as the name hits her, eyes filling with 
 
 **29** 3:50 · WS → CU · REF `@HWAN_MASK` `@HWAN` `@EUNUCH_PARK` `@LOC_PRINCE_ROOM`
 ```
-A palace corridor lined with warm lanterns under moonlight. The masked man walks in and removes his gat and half-mask, revealing the handsome crown prince. A kind elderly eunuch in a teal robe bows and drapes a deep indigo dragon robe over his shoulders, asking in English, "Your Highness… did you see her?" The prince answers softly, "I did. She looked at me as if she knew me." [STYLE] [NIGHT]
+A palace corridor lined with warm lanterns under moonlight. The masked man walks in and removes his Korean gat and half-mask, revealing the handsome crown prince. A kind elderly eunuch in a teal Korean danryeong official robe and black samo hat bows and drapes a deep indigo gonryongpo over his shoulders, asking in English, "Your Highness… did you see her?" The prince answers softly, "I did. She looked at me as if she knew me." [STYLE] [NIGHT]
 ```
 - KR: "저하, 뵈셨사옵니까?" / "보았네. 나를… 아는 사람처럼 보더군."
 

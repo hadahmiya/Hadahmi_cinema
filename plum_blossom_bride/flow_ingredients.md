@@ -11,9 +11,27 @@
 | **조화 규칙** | 한 화면 안에 파스텔 2–3색 + 진한 포인트 1색. 인물마다 고유 색을 정해 화면에서 바로 구분되게 |
 | **질감** | 명주·모시·비단의 은은한 광택, 한지 문살로 걸러진 확산광, 반사판 느낌의 깨끗한 피부톤 |
 
+## 0-1. ⚠️ 한복이 일본·중국 의상으로 나오는 이유와 대책
+| 원인 | 대책 (이 문서에 반영됨) |
+|---|---|
+| **Flow(Veo/Imagen)에는 네거티브 입력란이 없다.** `kimono`, `hanfu`를 프롬프트에 쓰면 "하지 마"가 아니라 *그 단어를 그리라는 신호*가 된다 | 네거티브 단어를 **전부 삭제**하고, 원하는 것만 긍정형으로 묘사 |
+| `jeogori`, `wonsam`, `ikseongwan` 같은 한국어 고유명사는 학습 데이터가 적어 모델이 잘 모른다 → "동아시아 궁중 의상" 평균값(중국 사극 / 기모노)으로 대체 | 고유명사 + **모양을 영어로 풀어 쓰기** (아주 짧은 상의, 오른쪽 가슴의 긴 리본 매듭, 겨드랑이부터 퍼지는 종 모양 치마…) |
+| `robe`, `flower crown`, `winged cap`, `palace maid`, `guards`, `hairpin` 같은 일반어 → 중국풍으로 끌려감 | 모든 의상/인물 앞에 **`Korean`, `Joseon`, `hanbok`** 을 반복 부착 |
+| 넓은 소매 + 허리띠 묘사 → 기모노/한푸 실루엣 | **허리띠 없음, 좁은 소매, 하이웨이스트**를 명시 |
+| 텍스트만으로 레퍼런스 이미지 생성 | **실제 한복 사진**(국립민속박물관·e뮤지엄 공공누리 이미지, 한복진흥센터 자료, 직접 촬영본)을 Flow 이미지 생성에 첨부해 `@` 레퍼런스를 만든다 — 가장 확실한 방법 |
+
+**레퍼런스 이미지 합격 기준** (하나라도 틀리면 재생성):
+- [ ] 여자 저고리가 **가슴 위에서 끝나는 짧은 길이**이고, 오른쪽 가슴에 **긴 고름 리본**이 늘어져 있다
+- [ ] 치마가 **겨드랑이 높이에서 시작해** 종 모양으로 퍼지고, **허리띠(오비)가 없다**
+- [ ] 깃이 **V자로 겹치고 흰 동정**이 둘려 있다
+- [ ] 여자 머리가 **가운데 가르마로 납작하게** 빗겨 있다 (올림머리 장식 과다 = 중국풍)
+- [ ] 남자 갓이 **넓고 반투명한 챙 + 원통형 모자 + 구슬 갓끈**이다 (삿갓·관모 형태 X)
+- [ ] 세자 옷은 **둥근 깃(단령)** 에 가슴·양어깨의 **둥근 금색 용 흉배**, 모자는 뒤에 **작은 날개 두 개가 위로 선** 익선관
+
 ## 1. [STYLE] — 모든 컷 끝에 붙임
 ```
-Bright, airy Korean historical drama look set in late Joseon (18th century). High-key natural lighting, soft diffused sunlight filtered through hanji paper doors, clean luminous skin tones, gentle lens bloom. Harmonious pastel palette of soft peach-pink, celadon jade, spring green, butter yellow and pale lilac, accented by vermilion, deep plum-purple and indigo. Lush green pine and willow, ivory hanji, grey-blue roof tiles, honey-colored wood. Historically accurate hanbok in fine silk and ramie with delicate sheen. Shot on 35mm, shallow depth of field, smooth gentle camera movement, photorealistic, 4K, no text, no subtitles, no watermark.
+HANBOK ANCHOR: Korean sageuk historical drama set in Joseon-dynasty Korea; all characters are Korean people wearing authentic traditional Korean hanbok — women in very short cropped jeogori jackets ending above the chest, tied with a long ribbon bow (goreum) on the right side, white V-shaped collar strip, full bell-shaped chima skirts gathered high under the arms with no waist belt, narrow sleeves, hair smoothly center-parted; men in Korean dopo or durumagi coats and wide-brimmed translucent black horsehair gat hats. Korean hanok architecture with ondol floors and hanji paper doors.
+LOOK: Bright, airy Korean historical drama look set in late Joseon (18th century). High-key natural lighting, soft diffused sunlight filtered through hanji paper doors, clean luminous skin tones, gentle lens bloom. Harmonious pastel palette of soft peach-pink, celadon jade, spring green, butter yellow and pale lilac, accented by vermilion, deep plum-purple and indigo. Lush green pine and willow, ivory hanji, grey-blue roof tiles, honey-colored wood. Historically accurate hanbok in fine silk and ramie with delicate sheen. Shot on 35mm, shallow depth of field, smooth gentle camera movement, photorealistic, 4K, no text, no subtitles, no watermark.
 ```
 
 ## 2. [NIGHT] — 밤 장면은 STYLE 뒤에 추가
@@ -26,10 +44,9 @@ Luminous blue-hour night, bright full moonlight with warm glowing lanterns, face
 Warm dreamlike flashback, overexposed golden spring sunlight, gentle haze and bloom, soft pastel colors, late-Joseon Korea, 35mm film, no text.
 ```
 
-## 4. [NEG]
-```
-dark gloomy lighting, heavy shadows, desaturated grey image, Chinese hanfu, Japanese kimono, modern objects, modern hairstyles, makeup with heavy eyeliner, distorted hands, extra fingers, text, logo, cartoon, anime
-```
+## 4. 네거티브는 쓰지 않는다
+Flow에는 네거티브 입력란이 없으므로 **금지어를 프롬프트에 넣지 않는다.** 대신 위 `HANBOK ANCHOR` + `LOOK`의 긍정형 묘사로 통제한다.
+(Flow 밖의 이미지 도구 — 예: 네거티브 칸이 따로 있는 Midjourney `--no`, SD negative — 에서만 `kimono, hanfu, obi belt, wide sleeves, Chinese crown, dark lighting` 을 별도 칸에 넣는다.)
 
 ---
 
@@ -46,25 +63,26 @@ dark gloomy lighting, heavy shadows, desaturated grey image, Chinese hanfu, Japa
 ---
 
 ## 6. 인물 레퍼런스 (이미지 생성용)
-모든 프롬프트 앞에 `Full-body character reference, front and three-quarter view,`, 뒤에 `plain warm ivory background, bright soft studio light, photorealistic, historically accurate late-Joseon hanbok.` 를 붙인다.
+모든 프롬프트 앞에 `Full-body character reference photo for a Korean sageuk drama, front and three-quarter view, a Korean person wearing authentic traditional Korean hanbok,`, 뒤에 `plain warm ivory background, bright soft studio light, photorealistic, styled like a Korean Folk Museum hanbok reconstruction.` 를 붙인다.
+가능하면 실제 한복 사진 1장을 함께 첨부한다.
 
 | 이름 | 고유색 | 프롬프트 |
 |---|---|---|
-| **@SEOYEON** | 연분홍 × 옥색 | `a 19-year-old Korean noble maiden, delicate oval face, clear bright dark-brown eyes, gentle but intelligent expression, natural fresh makeup, long black hair in a single low braid tied with a deep plum-purple daenggi ribbon, wearing a short soft peach-pink samhoejang jeogori with deep plum-purple collar, cuffs and ties, and a high-waisted celadon jade-green silk chima, a small embroidered silk pouch norigae at her waist` |
-| **@SEOYEON_HONGSANG** | 연두 × 다홍 (녹의홍상) | 같은 얼굴·머리, `wearing a spring-green jeogori with deep plum-purple ties and cuffs and a vivid vermilion-red silk chima with a subtle gold-leaf hem (the traditional nogui-hongsang maiden's formal dress), jade butterfly norigae` |
-| **@SEOYEON_BRIDE** | 자적 × 금 | 같은 얼굴, `as a crown princess bride: deep plum-red (jajeok) wonsam ceremonial robe with gold-leaf phoenix patterns and rainbow-striped sleeves, jeweled hwagwan flower crown, hair in a married chignon with a plain silver binyeo hairpin, red yeonji-gonji dots on cheeks and forehead` |
-| **@HWAN** | 아청 × 금 | `a 24-year-old Korean crown prince, tall, sharp jawline, warm deep eyes, calm dignified expression, wearing a deep indigo-blue (acheong) gonryongpo robe with gold four-clawed dragon roundels on chest and shoulders, black ikseongwan winged cap, jade belt, black boots` |
-| **@HWAN_MASK** | 옥색 × 흑 | 같은 얼굴, `incognito as a scholar: pale celadon-blue silk dopo robe with a thin dark sash, black horsehair gat hat with bead strap, an elegant black lacquered half-mask covering eyes and nose` |
-| **@HWAN_WEDDING** | 아청 × 금 | @HWAN과 동일 의상, 가례 당일 버전 (`gold embroidery gleaming, a red silk ribbon at the belt`) |
-| **@HWARYEONG** | 연노랑 × 장미분홍 | `a 21-year-old Korean noble maiden, round pretty face, sweet bright smile that does not reach her eyes, long braid with a rose-pink daenggi and small gold ornaments, butter-yellow jeogori with subtle gold-leaf trim and rose-pink ties, a rose-pink silk chima, a small red knotted silk perfume pouch (hyangnang) tied at her waist` |
-| **@HWARYEONG_NAIN** | 연두 × 남 | 같은 얼굴, `disguised as a palace maid (nain): pale green jeogori, navy chima, hair in a plain braided court bun` |
-| **@LADYMIN** | 회청 × 쪽빛 | `a 45-year-old Korean noble matriarch, elegant but cold narrow eyes, thin smile, married chignon with a jade binyeo, slate-blue jeogori with indigo ties and a deep indigo chima, carved jade ring` |
-| **@DALI** | 생성 × 남 | `a 16-year-old Korean servant girl, bright round eyes, freckles, cheerful face, single long braid with a faded red daenggi, plain undyed cotton jeogori and a navy cotton chima with a white apron tied at the waist` |
-| **@EUNUCH_PARK** | 청록 | `a 50-year-old Joseon palace eunuch, kind smiling wrinkled face, beardless, teal-green official robe with round collar, black official hat` |
-| **@JO** | 홍 | `a 60-year-old Joseon high official, gaunt face, grey goatee, deep red danryeong official robe with crane insignia, black samo hat` |
-| **@DOWAGER** / **@DOWAGER_HAND** | 진남 × 금 | `a 65-year-old Korean Queen Dowager, regal and icy, large formal court wig (eoyeomeori) with gold ornaments, deep navy dangui with gold phoenix embroidery, carved green jade dragon ring` / 손 클로즈업만: `elderly royal hand with a carved green jade dragon ring, navy silk sleeve with gold embroidery` |
-| **@SHAMAN** | 오방색 | `an ageless Korean female shaman (mudang), long white hair, layered robes in the five traditional colors (blue, red, yellow, white, black), brass bells in hand, piercing kind eyes` |
-| **@YOUNG_SEOYEON** / **@YOUNG_HWAN** | | `8-year-old girl in a rainbow-striped saekdong jeogori and pink chima, two short braids with red daenggi` / `14-year-old boy prince in a pale blue robe and small black hat, tear-stained face` |
+| **@SEOYEON** | 연분홍 × 옥색 | `a 19-year-old Korean noble maiden, delicate oval Korean face, clear bright dark-brown eyes, gentle intelligent expression, natural fresh makeup, black hair smoothly center-parted and woven into one long single braid down her back tied at the end with a deep plum-purple daenggi ribbon. She wears a Korean samhoejang jeogori: a very short cropped soft peach-pink silk jacket ending above the chest, with a deep plum-purple V-collar, white dongjeong collar strip, plum-purple cuffs and a long plum-purple goreum ribbon bow hanging on the right chest; and a full celadon jade-green chima skirt wrapped high under the arms, flaring like a bell to the floor, no belt. A small embroidered Korean silk pouch norigae with tassel hangs at her side` |
+| **@SEOYEON_HONGSANG** | 연두 × 다홍 (녹의홍상) | 같은 얼굴·땋은 머리, `wearing the Korean nogui-hongsang maiden's formal hanbok: a very short cropped spring-green silk jeogori with deep plum-purple goreum ribbon and cuffs and white collar strip, and a full vivid vermilion-red chima skirt gathered high under the arms with a gold-leaf band at the hem, no belt, a jade butterfly norigae with long red tassel` |
+| **@SEOYEON_BRIDE** | 자적 × 금 | 같은 얼굴, `as a Joseon crown princess bride in Korean royal wedding hanbok: a deep plum-red jajeok wonsam — a long front-open Korean ceremonial overcoat with wide rainbow-striped sleeve bands (saekdong) and long white hansam cuffs, gold-leaf phoenix pattern, worn over a vermilion chima; a small Korean jeweled hwagwan headpiece on top; hair in a low flat married chignon (jjokmeori) at the nape held by one plain silver binyeo; round red yeonji-gonji dots on both cheeks and forehead` |
+| **@HWAN** | 아청 × 금 | `a 24-year-old Korean crown prince, tall, sharp jawline, warm deep eyes, calm dignified expression, wearing the Joseon royal gonryongpo: a deep indigo-blue (acheong) silk robe with a round collar (danryeong style), circular gold-embroidered four-clawed dragon badges on the chest, back and both shoulders, a stiff wide jade-plaque belt worn loose at the waist; a black Korean ikseongwan cap — a rounded black silk cap with two small rounded flaps standing upward at the back; black leather boots` |
+| **@HWAN_MASK** | 옥색 × 흑 | 같은 얼굴, `incognito as a Korean seonbi scholar: a pale celadon-blue Korean dopo overcoat with a slit back panel and a thin dark-blue silk cord sash (sejodae) tied at the chest, a black Korean gat hat with a very wide flat translucent horsehair brim, tall cylindrical crown and a long bead chin strap, an elegant black lacquered half-mask covering eyes and nose` |
+| **@HWAN_WEDDING** | 아청 × 금 | @HWAN과 동일한 한국 곤룡포 + 익선관, 가례 당일 버전 (`gold dragon badges gleaming, a red silk ribbon at the jade belt`) |
+| **@HWARYEONG** | 연노랑 × 장미분홍 | `a 21-year-old Korean noble maiden, round pretty Korean face, sweet bright smile that does not reach her eyes, black hair center-parted in one long single braid with a rose-pink daenggi ribbon, wearing a very short cropped butter-yellow Korean jeogori with a thin gold-leaf border, rose-pink goreum ribbon bow on the right chest and white collar strip, and a full rose-pink chima skirt gathered high under the arms, no belt, a small red knotted Korean silk hyangnang perfume pouch hanging at her side` |
+| **@HWARYEONG_NAIN** | 연두 × 남 | 같은 얼굴, `disguised as a Joseon palace maid (nain): short pale green Korean jeogori with white collar strip, full navy chima, hair braided and pinned in a simple low Korean court bun with a small black ribbon` |
+| **@LADYMIN** | 회청 × 쪽빛 | `a 45-year-old Korean noble matriarch, elegant but cold narrow eyes, thin smile, hair in a low flat married Korean chignon at the nape with a jade binyeo, wearing a short slate-blue Korean jeogori with indigo goreum ribbon and white collar strip and a full deep indigo chima, carved jade ring` |
+| **@DALI** | 생성 × 남 | `a 16-year-old Korean servant girl of Joseon, bright round eyes, freckles, cheerful face, hair center-parted in one long braid with a faded red daenggi, plain undyed cotton Korean jeogori with short ties and a navy cotton chima hitched up, white cotton apron` |
+| **@EUNUCH_PARK** | 청록 | `a 50-year-old Joseon palace eunuch, kind smiling wrinkled Korean face, beardless, teal-green Korean danryeong official robe with round collar and a black Korean samo official hat with two horizontal side wings` |
+| **@JO** | 홍 | `a 60-year-old Joseon high official, gaunt Korean face, grey goatee, deep red Korean danryeong official robe with a square crane insignia badge on the chest, black Korean samo hat with two horizontal side wings` |
+| **@DOWAGER** / **@DOWAGER_HAND** | 진남 × 금 | `a 65-year-old Korean Queen Dowager, regal and icy, large formal court wig (eoyeomeori) with gold ornaments, deep navy Korean dangui ceremonial jacket — a short Korean jacket with long curved front and back panels — with gold-leaf phoenix pattern over a full navy chima, carved green jade dragon ring` / 손 클로즈업만: `elderly royal hand with a carved green jade dragon ring, navy Korean dangui sleeve with white inner cuff and gold-leaf border` |
+| **@SHAMAN** | 오방색 | `an ageless Korean female shaman (mudang), long white hair, Korean shaman's hanbok with layered garments in the five Korean obangsaek colors (blue, red, yellow, white, black), brass bells in hand, piercing kind eyes` |
+| **@YOUNG_SEOYEON** / **@YOUNG_HWAN** | | `8-year-old Korean girl in a short Korean saekdong jeogori with rainbow-striped sleeves and a pink chima, one braid with a red daenggi` / `14-year-old Korean boy prince in a pale blue Korean durumagi coat and black Korean bokgeon cloth hat, tear-stained face` |
 
 ## 7. 장소 레퍼런스
 모든 프롬프트 뒤에 `bright, historically accurate late-Joseon architecture, photorealistic, wide establishing shot.`
